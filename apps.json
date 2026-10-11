@@ -1,0 +1,11 @@
+{
+  "mac-usage": {
+    "repository": "jerrylusato/mac-usage-tracker",
+    "app": "mac",
+    "filename": "mac-usage-{version}-universal.dmg",
+    "workflows": {
+      "ad-hoc": "release-adhoc.yml",
+      "developer-id": "release.yml"
+    }
+  }
+}
