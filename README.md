@@ -41,10 +41,11 @@ version and checksum stanzas; download/install instructions remain reviewed code
 delayed) or via **Run workflow**. When needed, it opens a PR, explicitly dispatches the
 verification workflow on that branch, and enables auto-merge. This uses only the tap's
 own ephemeral `GITHUB_TOKEN`; no cross-repository PAT or app signing key is needed.
-Unattended updates require enabling the tap's **Allow GitHub Actions to create and approve
-pull requests** setting and repository auto-merge. Permission approval is pending; the
-workflow itself never approves reviews. Until enabled, verified cask changes can be
-submitted and merged by the owner. `main` requires
+Release API discovery uses authenticated `gh api` to avoid shared runner IP rate limits;
+public asset downloads do not receive the token.
+The tap's **Allow GitHub Actions to create and approve pull requests** setting and
+repository auto-merge are enabled for unattended updates. The workflow creates PRs
+but never approves reviews. Merged branches are deleted automatically. `main` requires
 PRs, the `verify` check, an up-to-date branch, and resolved conversations; force pushes
 and deletion are disabled. The solo owner can merge verified PRs without a second reviewer.
 
