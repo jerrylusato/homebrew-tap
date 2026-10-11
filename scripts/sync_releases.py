@@ -81,7 +81,10 @@ def update_cask(content, version, digest):
 
 
 def sync(token, config, check):
-    release = json.loads(fetch(f'https://api.github.com/repos/{config["repository"]}/releases/latest'))
+    release = json.loads(subprocess.run(
+        ["gh", "api", f'repos/{config["repository"]}/releases/latest'],
+        check=True, capture_output=True, text=True,
+    ).stdout)
     tag = release.get("tag_name", "")
     if not re.fullmatch(r"v[0-9]+\.[0-9]+\.[0-9]+", tag):
         raise ValueError("Invalid release tag")
