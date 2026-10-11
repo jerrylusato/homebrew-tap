@@ -37,8 +37,8 @@ SHA-256, and GitHub-hosted build provenance for the exact source commit/tag and 
 It refuses downgrades or changes to an already published version. It changes only the
 version and checksum stanzas; download/install instructions remain reviewed code.
 
-`.github/workflows/refresh.yml` checks hourly at minute 17 UTC (GitHub schedules can be
-delayed) or via **Run workflow**. When needed, it opens a PR, explicitly dispatches the
+`.github/workflows/refresh.yml` checks daily at 03:43 UTC / 06:43 EAT (GitHub schedules can
+be delayed) or via **Run workflow**. When needed, it opens a PR, explicitly dispatches the
 verification workflow on that branch, and enables auto-merge. This uses only the tap's
 own ephemeral `GITHUB_TOKEN`; no cross-repository PAT or app signing key is needed.
 Release API discovery uses authenticated `gh api` to avoid shared runner IP rate limits;
